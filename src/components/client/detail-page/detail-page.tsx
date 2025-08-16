@@ -12,6 +12,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { facilitiesData } from "@/lib/dummy-data";
+import { toast } from "sonner";
 
 interface DetailPageProps {
   roomId: string;
@@ -52,6 +53,10 @@ const DetailPage = ({ roomId }: DetailPageProps) => {
       currency: "IDR",
       minimumFractionDigits: 0,
     }).format(price);
+  };
+
+  const handleBooking = () => {
+    toast.success("Berhasil booking (just simulation)");
   };
 
   return (
@@ -126,11 +131,12 @@ const DetailPage = ({ roomId }: DetailPageProps) => {
                     {selectedDuration.includes("bulan") ? "/ bulan" : "/ sewa"}
                   </span>
                 </div>
-                <Link href={`/`} className="cursor-pointer w-full">
-                  <ButtonGradient className="py-6">
-                    Pesan Sekarang
-                  </ButtonGradient>
-                </Link>
+                <ButtonGradient
+                  onClick={handleBooking}
+                  className="py-6 cursor-pointer w-full"
+                >
+                  Pesan Sekarang
+                </ButtonGradient>
               </CardContent>
             </Card>
           </div>

@@ -2,18 +2,24 @@ import { ReactNode } from "react";
 import { Button } from "./ui/button";
 import clsx from "clsx";
 
-interface ButtonGradientProps {
+// Perbarui interface untuk menerima semua props dari elemen button HTML
+interface ButtonGradientProps extends React.ComponentPropsWithoutRef<"button"> {
   children: ReactNode;
   className?: string;
 }
 
-const ButtonGradient = ({ children, className }: ButtonGradientProps) => {
+const ButtonGradient = ({
+  children,
+  className,
+  ...props
+}: ButtonGradientProps) => {
   return (
     <Button
       className={clsx(
         "bg-gradient-to-r w-full from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white px-8 py-4 text-lg shadow-xl shadow-emerald-500/25 hover:shadow-emerald-500/40 transition-all duration-300 group cursor-pointer",
         className
       )}
+      {...props} // Tambahkan props yang tersisa di sini
     >
       {children}
     </Button>
